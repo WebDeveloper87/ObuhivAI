@@ -203,3 +203,41 @@ main{
 .effect_item:hover i {
     transform: rotate(90deg);
 }
+
+footer{
+background-color:  rgb(28, 28, 27);
+width: 100%;
+box-sizing: border-box;
+padding: 25px;
+color: white;
+margin-top: 20px;
+font-size: 17px;
+    font-family: Merriweather ;
+}
+.footer_top{
+display: flex;
+width: 100%;
+justify-content: space-around;
+align-items: center;
+}
+
+.footer_top ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer_bottom{
+    font-family: Merriweather ;
+    font-size: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.footer_bottom p a{
+    text-decoration: none;
+    color:  rgb(243, 142, 0) ;
+    font-weight: 800;
+}
+
