@@ -13,7 +13,7 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
     <link rel="stylesheet" href="./stylesheets/chat.css">
-    <script src="./scripts/chat.js" defer></script>
+    <script src="./javascripts/chatPage.js" defer></script>
 </head>
 <body>
      <header>
@@ -25,10 +25,10 @@
         <div class="content">
 
         </div>
-        <div class="question">
-                    <input class="input" type="text" placeholder="Ask anything">
-                    <button class="send"><i class='bx bxs-send'></i>  </button>
-        </div>
-     </main>
+        <form class="question">
+                    <input class="input" name="prompt" type="text" placeholder="Ask anything">
+                    <button class="send" type="submit"><i class='bx bxs-send'></i>  </button>
+        </form>
+    </main>
 </body>
 </html>
