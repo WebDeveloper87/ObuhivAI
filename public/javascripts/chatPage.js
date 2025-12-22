@@ -4,38 +4,58 @@ const content = document.getElementsByClassName('content')[0]
 const form = document.querySelector('.question');
 
 
-function formatText(text) {
-    return text.replace(/\n/g, '<br>');
+function renderAIMessage(markdownText) {
+    const rawHTML = marked.parse(markdownText);
+    const safeHTML = DOMPurify.sanitize(rawHTML);
+
+    content.innerHTML += `
+        <div class="message ai">
+            ${safeHTML}
+        </div>
+    `;
+}
+
+function escapeHTML(str) {
+  return str.replace(/[&<>"']/g, m => ({
+    '&':'&amp;',
+    '<':'&lt;',
+    '>':'&gt;',
+    '"':'&quot;',
+    "'":'&#39;'
+  })[m]);
 }
 
 
 form.addEventListener('submit', async (e) => {
-    e.preventDefault();
+ e.preventDefault();
 
-    if (!input.value) return;
+    if (!input.value.trim()) return;
+
+    send.disabled = true;
 
     const userText = input.value;
 
     content.innerHTML += `
         <div class="message user">
-            <p>${userText}</p>
+            <p>${escapeHTML(userText)}</p>
         </div>
     `;
 
     input.value = '';
 
-    const res = await fetch('/chat/ask', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: userText })
-    });
+    try {
+        const res = await fetch('/chat/ask', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ prompt: userText })
+        });
 
-    const data = await res.json();
-    console.log(data);
+        const data = await res.json();
 
-    content.innerHTML += `
-        <div class="message ai">
-            <p>${formatText(data.answer)}</p>
-        </div>
-    `;
+        renderAIMessage(data.answer);
+    } catch (err) {
+        alert("Помилка зв'язку з сервером. Спробуйте пізніше.");
+    } finally {
+        send.disabled = false;
+    }
 });

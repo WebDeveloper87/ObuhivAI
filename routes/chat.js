@@ -16,7 +16,6 @@ router.post('/ask', async function(req, res, next) {
 
     try {
         let response = await AIService.processPrompt(prompt);
-        console.log(response);
         res.json({answer: response});
     } catch (error) {
         res.status(500).send({})

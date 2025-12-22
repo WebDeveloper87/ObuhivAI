@@ -116,3 +116,33 @@ main {
     word-break: break-word;
     white-space: pre-wrap;
 }
+
+
+
+.message.ai h1,
+.message.ai h2,
+.message.ai h3 {
+  margin: 12px 0;
+}
+
+.message.ai p {
+  margin: 8px 0;
+}
+
+.message.ai ul {
+  padding-left: 20px;
+}
+
+.message.ai code {
+  background: #eee;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.message.ai pre {
+    background: #f4f4f4;
+  color: #000000;
+  padding: 12px;
+  border-radius: 8px;
+  overflow-x: auto;
+}
