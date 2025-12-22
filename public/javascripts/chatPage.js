@@ -44,7 +44,7 @@ form.addEventListener('submit', async (e) => {
     input.value = '';
 
     try {
-        const res = await fetch('/api/ai', {
+        const res = await fetch('/chat/ask', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ prompt: userText })
